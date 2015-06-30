@@ -9,6 +9,9 @@ all: $(TARGET)
 %.o: %.c 
 	$(CC) -c $(CFLAGS) $(OPT) $^ -o $@
 
+asm: intmm.c
+	$(CC) -S $(CFLAGS) $(OPT) $^
+
 $(TARGET): $(OBJS)
 	$(CC) -o $@ $^ $(CFLAGS)
 
@@ -17,4 +20,4 @@ run:
 diff:
 	./Intmm > intmm.txt && diff intmm.txt result.txt && rm -f intmm.txt
 clean:  
-	rm -f *.o Intmm intmm.txt
+	rm -f *.o intmm.s Intmm intmm.txt
