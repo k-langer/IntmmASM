@@ -1,0 +1,10 @@
+Using Stanford integer matrix multiply to learn x86 assembly for fun
+    Figured it is easier than 8Queens and is common target
+    for optimization. Beating the compiler in # of instructions
+    in the inner loop but failing to make my loop faster. It isn't 
+    that far off though!
+
+Downloaded the IntMM benchmark and re-wrote the function 'Innerproduct'. 
+    * InnerproductPASM: Pseudo-assembly template of what I wanted to do in ASM
+    * InnerproductASM: x86 assembly
+
