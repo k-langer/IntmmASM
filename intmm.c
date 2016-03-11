@@ -6,9 +6,9 @@
 */ 
 
 #include <stdio.h>
-#include <stdlib.h>
+//#include <stdlib.h>
     /* Intmm, Mm */
-#define rowsize      400
+#define rowsize      1000
     /* global */
     /* Intmm, Mm */
 int   ima[rowsize+1][rowsize+1], imb[rowsize+1][rowsize+1], imr[rowsize+1][rowsize+1];
@@ -71,9 +71,8 @@ void InnerproductASM( int *result, int a[rowsize+1][rowsize+1], int b[rowsize+1]
              "inner: "
              "addq $4, %%rbx\n\t"
              "addq %%rdi, %%rcx\n\t"
-             "movl (%%rbx),%%r8d\n\t"
              "movl (%%rcx),%%eax\n\t" 
-             "imull %%r8d\n\t"
+             "imull (%%rbx)\n\t"
              "addl %%eax,%%r9d\n\t"
              "cmp %%esi,%%ebx\n\t"
              "jl inner\n\t"
@@ -91,7 +90,7 @@ void Intmm (int run) {
     Initmatrix (imb);
     for ( i = 1; i <= rowsize; i++ )
         for ( j = 1; j <= rowsize; j++ )
-          InnerproductASM(&imr[i][j],ima,imb,i,j);
+          Innerproduct(&imr[i][j],ima,imb,i,j);
     printf("%d\n", imr[run+1][run+1]);
 }
 int main()
